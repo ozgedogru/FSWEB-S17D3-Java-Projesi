@@ -1,6 +1,8 @@
 package com.workintech.sprint17d3.controller;
 
 import com.workintech.sprint17d3.entity.Kangaroo;
+import com.workintech.sprint17d3.exceptions.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -18,8 +20,12 @@ public class KangarooController {
     }
 
     @GetMapping("/{id}")
-    public Kangaroo getKangarooById(@PathVariable Long id) {
-        return kangaroos.get(id);
+    public ResponseEntity<Kangaroo> getKangarooById(@PathVariable Long id) {
+        if (!kangaroos.containsKey(id)) {
+            throw new ResourceNotFoundException("Kangaroo does not exist with id: " + id);
+        }
+        Kangaroo kangaroo = kangaroos.get(id);
+        return ResponseEntity.ok(kangaroo);
     }
 
     @PostMapping

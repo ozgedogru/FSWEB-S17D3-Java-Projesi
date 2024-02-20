@@ -1,6 +1,5 @@
 package com.workintech.sprint17d3.controller;
 
-import com.workintech.sprint17d3.entity.Kangaroo;
 import com.workintech.sprint17d3.entity.Koala;
 import com.workintech.sprint17d3.exceptions.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
